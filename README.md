@@ -1,4 +1,5 @@
 # 对象参数校验和参数容错处理的工具
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 
 提供多种参数验证和参数处理使用方式：<br/>
