@@ -14,7 +14,7 @@ public class StringLengthValidation implements ValidComponent{
     @Override
     public void valid(Field field, Object value) throws ValidationFailException {
         StringLength stringLength = field.getAnnotation(StringLength.class);
-        if(value==null || stringLength==null){
+        if(value==null || stringLength==null ||!STRING_CLASS.equals(value.getClass().getName())){
             return;
         }
 

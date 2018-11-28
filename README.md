@@ -36,3 +36,76 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
 
 标注此注解的字段不允许为null，但允许为空
 
+#### [@NotEmpty](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/NotEmpty.java)
+
+标注此注解的字段可以为null，不允许为空串和空白串，只验证字符串。非字符串忽略
+
+#### [@NotNullorEmpty](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/NotNullorEmpty.java)
+
+标注此注解的字段不允许为null，也不允许为空串和空白字符串
+
+#### [@StringLength](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/StringLength.java)
+
+标准此注解的字段验证在字段非null时才生效。<br/>
+表示字符串的长度范围。两个属性：min，max，每个属性默认值-1,-1表示不验证min或者max <br/>
+
+#### [@AssertBool](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/AssertBool.java)
+
+标准此注解的字段验证在字段非null时才生效。<br/>
+表示字段类型必须是布尔值或者是字符串类型的布尔值
+
+#### [@AssertTrue](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/AssertTrue.java)
+
+标准此注解的字段验证在字段非null时才生效。<br/>
+表示字段类型必须是布尔值true或者是字符串类型的布尔值true
+
+#### [@AssertFalse](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/AssertFalse.java)
+
+标准此注解的字段验证在字段非null时才生效。<br/>
+表示字段类型必须是布尔值false或者是字符串类型的布尔值false
+
+#### [@Pattern](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/Pattern.java)
+
+表示字符串字段必须符合某正则，字段也不允许为null。
+
+#### [@CollectionSize](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/CollectionSize.java)
+
+标准此注解的字段验证在字段非null时才生效。<br/>
+如果字段是一个数组，Collection，Map。该字段可以验证这个数组／collection/map的size在min和max之间，min和max默认为-1，-1表示不验证最小或者最大边界
+
+#### [@IntNumber](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/IntNumber.java)
+#### [@LongNumber](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/LongNumber.java)
+#### [@DoubleNumber](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/DoubleNumber.java)
+
+标准此以上的字段验证在字段非null时才生效。<br/>
+表示标注的字段必须是可以转成对应类型的数字。并且数字范围在min和max之间。-1表示不限制最小值或者最大值
+
+#### [@DateStringFormat](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/DateStringFormat.java)
+
+标准此以上的字段验证在字段非null时才生效。<br/>
+表示标注的字段必须是指定format类型的时间，比如：
+```java
+    public class User {
+        
+        @NotNull
+        @DateStringFormat(format="yyyy-MM-dd")
+        private String createTime;
+    }
+```
+但是以上验证不是很严格。比如说format=yyyy-MM-dd。但实际上传递 2018-12-12 12:13:55 这样待小时的时间也被认为是合法的。<br/>
+如果你要求必须是严格的yyyy-MM-dd类型，建议加上@StringLength(min=10,max=10)来限制长度。
+
+#### [@ValidChild](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/ValidChild.java)
+
+标准此以上的字段验证在字段非null时才生效。<br/>
+默认情况下，该工具只验证对象的一级参数。如果你的javaBean对象的一个字段也是一个javaBean <br/>
+你需要在字段前标注@ValidChild 注解告诉工具需要验证子对象，例如：
+```java
+    public class User {
+        
+        @NotNull
+        @ValidChild
+        private Order order;
+    }
+```
+ 
