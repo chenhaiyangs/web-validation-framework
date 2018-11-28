@@ -8,12 +8,12 @@ import lombok.Data;
 
 @Data
 public class User {
-
     @NotNull
     private String userId;
 
     @IntNumber(min = 6,max = 12)
     private int age;
+
     @DateStringFormat(format = "yyyy-MM-dd")
     @StringLength(min = 10,max = 10)
     private String timeStemp;
