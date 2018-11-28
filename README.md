@@ -31,6 +31,8 @@
         @DateStringFormat(format = "yyyy-MM-dd")
         @StringLength(min = 10,max = 10)
         private String timeStemp;
+        
+        get/set......
     }
 ```
 ## 参数验证类注解详解
@@ -99,6 +101,8 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
         @NotNull
         @DateStringFormat(format="yyyy-MM-dd")
         private String createTime;
+        
+        get/set......
     }
 ```
 但是以上验证不是很严格。比如说format=yyyy-MM-dd。但实际上传递 2018-12-12 12:13:55 这样待小时的时间也被认为是合法的。<br/>
@@ -115,6 +119,8 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
         @NotNull
         @ValidChild
         private Order order;
+        
+        get/set......
     }
 ```
 ## 参数处理类注解详解：
@@ -152,9 +158,95 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
     }
 ```
 
+## API的方式使用该工具：
+只导入依赖：
+```xml
+     <!-- 参数验证核心工具 -->
+    <dependency>
+        <artifactId>web-validation-core</artifactId>
+        <groupId>com.github.chenhaiyangs</groupId>
+        <version>1.0.0</version>
+    </dependency>
+```
+编写代码：
+```java
+   public void setUser(User user){
+            
+       //参数验证API
+       Validation.validate(user);
+       //参数处理API
+       Procession.process(user);
+    
+    }
+```
+## SpringAOP的方式使用该工具：
+只导入依赖：
+```xml
+     <!-- 在Spring中使用参数验证 -->
+    <dependency>
+        <artifactId>web-validation-spring-simple</artifactId>
+        <groupId>com.github.chenhaiyangs</groupId>
+        <version>1.0.0</version>
+    </dependency>
+```
+编写AOP的拦截配置：（截取aop相关关键配置）
+```xml
+    
+    <bean id="validInterceptor" class="com.web.validation.spring.aop.AspectjAopInterceptor"/>
+        
+    <!-- aspectj织入 配置-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <aop:config proxy-target-class="true">
+        <!-- 处理 @validInterceptor AOP-->
+        <aop:aspect ref="validInterceptor">
+            <aop:pointcut id="validInterceptorPointCut" expression="execution(* com.xxx.xxxx.xxxxxx.xxxxxxxxx.*.*(..))"/>
+            <aop:around pointcut-ref="validInterceptorPointCut" method="process"/>
+        </aop:aspect>
+    </aop:config>
+```
+在要参数的方法的参数上添加对应注解。
+```java
+    
+    public User sayHello(@Valid @Process User user,int max, @Valid Country country){
+       ......
+    }
+```
+如上，多个参数，只要是javaBean类型，只要在方法对应的参数前加上@Valid或者Process注解，对应的验证或处理逻辑就生效。<br/>
+如果@Valid和@Process 两个注解在一个参数上同时存在，是先验证数据合法性还是先处理数据？
+默认是先Process后Valid。
+你可以人为调整逻辑顺序。这两个注解都有order属性,表示顺序，order越大的，执行顺序靠后。
 
+## 在SpringBoot的restful API 中使用该工具
+只导入依赖：
+```xml
+     <!-- 在Spring中使用参数验证 -->
+    <dependency>
+        <artifactId>web-validation-spring-boot-starter</artifactId>
+        <groupId>com.github.chenhaiyangs</groupId>
+        <version>1.0.0</version>
+    </dependency>
+```
+在启动类上添加@ValidAndProcessEnabled注解：
+```java
+    @ValidAndProcessEnabled
+    @SpringBootApplication
+    @EnableAspectJAutoProxy(proxyTargetClass = true,exposeProxy = true)
+    public class SpringBootTestApplication {
+    
+        public static void main(String[] args) {
+            SpringApplication.run(SpringBootTestApplication.class,args);
+        }
+    }
+```
+验证逻辑：
+```java
+    @RequestMapping(value = "/validtest",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public User sayHello(@RequestBody @Valid User user){
+        return user;
+    }
+```
+ 
 
- 
- 
  
 
