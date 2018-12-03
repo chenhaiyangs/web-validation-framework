@@ -14,7 +14,7 @@
     <dependency>
         <artifactId>web-validation-core</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 ```
 ## 参数验证的主体
@@ -97,6 +97,7 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
 
 标准此以上的字段验证在字段非null时才生效。<br/>
 表示标注的字段必须是指定format类型的时间，比如：
+
 ```java
     public class User {
         
@@ -109,6 +110,21 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
 ```
 但是以上验证不是很严格。比如说format=yyyy-MM-dd。但实际上传递 2018-12-12 12:13:55 这样待小时的时间也被认为是合法的。<br/>
 如果你要求必须是严格的yyyy-MM-dd类型，建议加上@StringLength(min=10,max=10)来限制长度。
+
+#### [@In](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/In.java)
+
+标注此字段的值只能在contains可选值属性中。被标注的字段只能是String或者java基础类型。
+例如：
+```java
+    public class User {
+        @In(contains ={"1","2","3"})
+        private String type;
+        
+        get/set......
+    }
+```
+表示type字段在非null的情况下只能是1，2，3。
+但是null时不判断。因此如果要求必传字段。建议添加注解@NotNull
 
 #### [@ValidChild](./web-validation-core/src/main/java/com/web/validation/core/annotation/valid/ValidChild.java)
 
@@ -265,7 +281,10 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
         return user;
     }
 ```
- 
+## 使用建议
+
+在和Spring相关的AOP使用场景中，建议编写统一异常处理拦截ValidationException
+获取code和message，来处理。
 
  
 

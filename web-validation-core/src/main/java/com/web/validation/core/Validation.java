@@ -38,6 +38,7 @@ public class Validation {
         validcomponents.put(LongNumber.class.getName(),new LongNumberValidation());
         validcomponents.put(DoubleNumber.class.getName(),new DoubleNumberValidation());
         validcomponents.put(DateStringFormat.class.getName(),new DateFormatStringValidation());
+        validcomponents.put(In.class.getName(),new InValidation());
 
     }
     /**

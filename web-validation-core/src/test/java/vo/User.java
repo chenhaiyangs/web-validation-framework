@@ -26,6 +26,9 @@ public class User {
     @ValidChild
     private List pss =new ArrayList();
 
+    @In(contains ={"1","2","3"})
+    private String sex;
+
     @NotNull
     @ValidChild
     @ProcessChild

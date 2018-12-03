@@ -9,8 +9,14 @@ import java.lang.reflect.Field;
  * @author chenhaiyang
  */
 public interface ValidComponent {
-
+    /**
+     * String 类型
+     */
     String STRING_CLASS="java.lang.String";
+    /**
+     * 基础类型-或者包装类型，在java.lang包
+     */
+    String BASIC_TYPE="java.lang";
     /**
      * 验证
      * @param field 字段

@@ -4,9 +4,12 @@ import com.web.validation.core.Validation;
 import com.web.validation.core.annotation.valid.ValidChild;
 import com.web.validation.core.exception.ValidationFailException;
 import com.web.validation.core.valid.ValidChildValidation;
+import vo.Age;
 import vo.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TestValidate {
@@ -27,6 +30,7 @@ public class TestValidate {
         list.add(5);
         user.setArr(list);
         user.setIne(21);
+        user.setSex("1");
         Validation.validate(user);
     }
 }
