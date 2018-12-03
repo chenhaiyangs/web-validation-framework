@@ -191,6 +191,15 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
         <version>1.0.0</version>
     </dependency>
 ```
+如果校验规则有新增。也可以另外导入core:如：1.1.0
+```xml
+<!-- 参数验证核心工具 -->
+    <dependency>
+        <artifactId>web-validation-core</artifactId>
+        <groupId>com.github.chenhaiyangs</groupId>
+        <version>1.1.0</version>
+    </dependency>
+```
 编写AOP的拦截配置：（截取aop相关关键配置）
 ```xml
     
@@ -226,6 +235,14 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
         <artifactId>web-validation-spring-boot-starter</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
         <version>1.0.0</version>
+    </dependency>
+```
+```xml
+<!-- 参数验证核心工具 -->
+    <dependency>
+        <artifactId>web-validation-core</artifactId>
+        <groupId>com.github.chenhaiyangs</groupId>
+        <version>1.1.0</version>
     </dependency>
 ```
 在启动类上添加@ValidAndProcessEnabled注解：
