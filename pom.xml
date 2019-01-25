@@ -8,7 +8,9 @@
     <artifactId>web-validation-framework</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
+    <name>web-validation-framework</name>
     <description>一款java validation 校验框架,用于简化java逻辑里的校验和去空格处理等逻辑</description>
+    <url>https://github.com/chenhaiyangs/web-validation-framework.git</url>
     <modules>
         <module>web-validation-core</module>
         <module>web-validation-spring-simple</module>
