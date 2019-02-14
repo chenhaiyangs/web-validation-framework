@@ -14,7 +14,7 @@
     <dependency>
         <artifactId>web-validation-core</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
     </dependency>
 ```
 ## 参数验证的主体
@@ -183,7 +183,7 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
     <dependency>
         <artifactId>web-validation-core</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.0.0</version>
+        <version>1.2.0</version>
     </dependency>
 ```
 编写代码：
@@ -204,7 +204,7 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
     <dependency>
         <artifactId>web-validation-spring-simple</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 ```
 如果校验规则有新增。也可以另外导入core:如：1.1.0
@@ -250,7 +250,7 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
     <dependency>
         <artifactId>web-validation-spring-boot-starter</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 ```
 ```xml
@@ -258,7 +258,7 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
     <dependency>
         <artifactId>web-validation-core</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
     </dependency>
 ```
 在启动类上添加@ValidAndProcessEnabled注解：
