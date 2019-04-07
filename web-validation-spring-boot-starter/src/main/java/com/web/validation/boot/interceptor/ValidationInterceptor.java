@@ -35,7 +35,9 @@ public class ValidationInterceptor {
             "||@annotation(org.springframework.web.bind.annotation.ModelAttribute)"+
             "||@annotation(org.springframework.web.bind.annotation.GetMapping)" +
             "||@annotation(org.springframework.web.bind.annotation.DeleteMapping)"+
-            "||@annotation(org.springframework.web.bind.annotation.CrossOrigin)")
+            "||@annotation(org.springframework.web.bind.annotation.CrossOrigin)" +
+            "||execution(* *(@com.web.validation.spring.annotation.Valid (*), ..))" +
+            "||execution(* *(@com.web.validation.spring.annotation.Process (*), ..))")
     public void match() {
 
     }

@@ -207,13 +207,13 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
         <version>1.1.0</version>
     </dependency>
 ```
-如果校验规则有新增。也可以另外导入core:如：1.1.0
+如果校验规则有新增。也可以另外导入core:如：1.2.0
 ```xml
 <!-- 参数验证核心工具 -->
     <dependency>
         <artifactId>web-validation-core</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
     </dependency>
 ```
 编写AOP的拦截配置：（截取aop相关关键配置）
@@ -250,7 +250,7 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
     <dependency>
         <artifactId>web-validation-spring-boot-starter</artifactId>
         <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
     </dependency>
 ```
 ```xml
@@ -278,6 +278,12 @@ message的设置 如果添加了 %s ，%s会自动映射到出错的字段上。
     @RequestMapping(value = "/validtest",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public User sayHello(@RequestBody @Valid User user){
+        return user;
+    }
+```
+如果是Dubbo等后台RPC接口。也一样有效。
+```java
+    public User sayHello(@Valid @Process User user){
         return user;
     }
 ```

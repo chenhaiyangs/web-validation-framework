@@ -1,5 +1,6 @@
 package com.web.validation.boot.test.vo;
 
+import com.web.validation.core.annotation.process.TrimPrefixAndSuffix;
 import com.web.validation.core.annotation.valid.DateStringFormat;
 import com.web.validation.core.annotation.valid.IntNumber;
 import com.web.validation.core.annotation.valid.NotNull;
@@ -9,6 +10,7 @@ import lombok.Data;
 @Data
 public class User {
     @NotNull
+    @TrimPrefixAndSuffix
     private String userId;
 
     @IntNumber(min = 6,max = 12)
